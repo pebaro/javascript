@@ -5,12 +5,12 @@ var dataModule = (function () {
     // PRIVATE:
     // ==========
 
-    var lineReturn = '|';
+    const lineReturn = '|';
 
     // shuffle function
-    var shuffle = function(array){
+    const shuffle = (array) => {
 
-        var newArray = [], randomIndex, randomElement;
+        let newArray = [], randomIndex, randomElement;
 
         while(array.length > 0){
 
@@ -30,9 +30,9 @@ var dataModule = (function () {
     };
 
     // random capitalisation function
-    String.prototype.upperCaseFirst = function(string){
+    String.prototype.upperCaseFirst = (string) => {
 
-        var newString, firstCharacter, remainingCharacters;
+        let newString, firstCharacter, remainingCharacters;
 
         // start newString as an empty string
         newString = '';
