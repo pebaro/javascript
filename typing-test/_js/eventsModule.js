@@ -1,24 +1,23 @@
 // Module for all Events
-var eventsModule = (function (dataMod, uiMod, certificateMod, wordsMod) {
+const eventsModule = ((dataMod, uiMod, certificateMod, wordsMod) => {
 
     // PRIVATE:    
-    var addEventListeners = function(){
+    const addEventListeners = () => {
 
         // event for 'Enter' key
-        uiMod.getDOMElements().textInput.addEventListener('keydown', function(event){
+        uiMod.getDOMElements().textInput.addEventListener('keydown', (e) => {
 
             // if test ended do nothing
-            if(dataMod.testEnded()){
-                return;
-            }
-            var key     = event.key;
-            var keycode = event.keyCode;
+            if(dataMod.testEnded()) return;
+
+            const key     = e.key;
+            const keycode = e.keyCode;
 
             if(key == 'Enter' && keycode == 13){
                 uiMod.getDOMElements().textInput.value += dataMod.getLineReturn() + ' ';
 
                 // create new input event
-                var inputEvent = new Event('input');
+                const inputEvent = new Event('input');
 
                 // dispath new input event
                 uiMod.getDOMElements().textInput.dispatchEvent(inputEvent);
@@ -26,12 +25,10 @@ var eventsModule = (function (dataMod, uiMod, certificateMod, wordsMod) {
         });
 
         // typing characters
-        uiMod.getDOMElements().textInput.addEventListener('input', function(event){
+        uiMod.getDOMElements().textInput.addEventListener('input', (e) => {
 
             // if test ended do nothing
-            if(dataMod.testEnded()){
-                return;
-            }
+            if(dataMod.testEnded()) return;
 
             // if test not started, start test
             if(!dataMod.testStarted()){
@@ -39,9 +36,9 @@ var eventsModule = (function (dataMod, uiMod, certificateMod, wordsMod) {
                 dataMod.startTest();
 
                 // start counter
-                var timer = setInterval(function(){
+                const timer = setInterval(() => {
                     // calculate results: dataModule
-                    var results = {};
+                    const results = {};
 
                     // update wpm, wpmChange
                     [results.wpm, results.wpmChange] = dataMod.calculateWPM();
@@ -59,7 +56,7 @@ var eventsModule = (function (dataMod, uiMod, certificateMod, wordsMod) {
                     if(dataMod.timeLeft()){
 
                         // reduce time left by 1 second: dataModule
-                        var timeLeft = dataMod.reduceTime();
+                        const timeLeft = dataMod.reduceTime();
 
                         // update time remaining in the UI
                         uiMod.updateTimeLeft(timeLeft);
@@ -80,17 +77,17 @@ var eventsModule = (function (dataMod, uiMod, certificateMod, wordsMod) {
             }
 
             // get typed word (uiModule)
-            var typedWord = uiMod.getTypedWord();
+            const typedWord = uiMod.getTypedWord();
 
             // update current word (dataModule)
             dataMod.updateCurrentWord(typedWord);
 
             // format active word
-            var currentWord = dataMod.getCurrentWord();
+            const currentWord = dataMod.getCurrentWord();
             uiMod.formatWord(currentWord);
 
             // check if user pressed space/enter
-            if(uiMod.enterPressed(dataMod.getLineReturn()) || uiMod.spacePressed(event)){
+            if(uiMod.enterPressed(dataMod.getLineReturn()) || uiMod.spacePressed(e)){
                 // console.log(event);
                 // empty text input
                 uiMod.emptyInput();
@@ -115,17 +112,15 @@ var eventsModule = (function (dataMod, uiMod, certificateMod, wordsMod) {
         });
 
         // click download button
-        uiMod.getDOMElements().downloadButton.addEventListener('click', function(event){
-            if(uiMod.isNameEmpty()){
-                uiMod.flagNameInput();
-            } else {
-                var certificateData = dataMod.getCertificateData();
-                certificateMod.generateCertificate(certificateData);
-            }
+        uiMod.getDOMElements().downloadButton.addEventListener('click', (e) => {
+            const certificateData = dataMod.getCertificateData();
+            
+            uiMod.isNameEmpty() 
+                ? uiMod.flagNameInput() 
+                : certificateMod.generateCertificate(certificateData);
         });
 
         // click restart button
-
     };
 
     // scroll test words to middle of content box on window resize
@@ -134,9 +129,9 @@ var eventsModule = (function (dataMod, uiMod, certificateMod, wordsMod) {
     // PUBLIC:
     return {
         // init: function (duration, textNumber) { 
-        init: function (duration, textNumber) { 
+        init(duration, textNumber) { 
 
-            var words, lineReturn, testWords, timeLeft, index, currentWord;
+            let words, lineReturn, testWords, timeLeft, index, currentWord;
 
             // lineReturn
             lineReturn = dataMod.getLineReturn();
