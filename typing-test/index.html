@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <script src="https://unpkg.com/ionicons@4.1.0/dist/ionicons.js"></script>
+
+    <link rel="stylesheet" href="_css/main.css">
+
+    <title>Typing Test Speed/Accuracy</title>
+  </head>
+<body>
+    <header>
+        <div class="container text-center">
+            <h1>Typing Test</h1>
+            <h2>Check the speed and accuracy of your typing</h2>
+            <p>Download a certificate at the end of the test, showing your results</p>
+        </div>
+        <!-- <div id="settings">
+            <label for="select-list">Choose Word List</label>  
+            <select name="select-list" id="select-list" class="form-control">
+                <option value="">Select</option>
+                <option value="0">Word List 1</option>
+                <option value="1">Word List 2</option>
+                <option value="2">Word List 3</option>
+                <option value="3">Word List 4</option>
+                <option value="4">Word List 5</option>
+                <option value="5">Word List 6</option>
+            </select> 
+            <label for="select-length">Set Length of Test</label>
+            <select name="select-length" id="select-length" class="form-control">
+                <option value="">Select</option>
+                <option value="60">1 Minute</option>
+                <option value="120">2 Minutes</option>
+                <option value="180">3 Minutes</option>
+                <option value="240">4 Minutes</option>
+                <option value="300">5 Minutes</option>
+            </select> 
+        </div> -->
+    </header>
+
+    <div class="container">
+        <div class="text-center">
+            <div class="row">
+                <div class="col-3 measurement"><!-- wpm -->
+                    <div class="measurement__container">
+                        <div class="icon">
+                            <ion-icon name="md-speedometer" style="font-size:100px;"></ion-icon>
+                        </div>
+                        <div id="wpm" class="icon__value">
+                            0
+                        </div>
+                        <div class="title">
+                            <span>Words /min</span>
+                        </div>
+                    </div>
+                    <div class="change">
+                        <span id="wpm__change"></span>
+                    </div>
+                </div>
+
+                <div class="col-3 measurement"><!-- cpm -->
+                    <div class="measurement__container">
+                        <div class="icon">
+                            <ion-icon name="md-speedometer" style="font-size: 100px;"></ion-icon>
+                        </div>
+                        <div id="cpm" class="icon__value">
+                            0
+                        </div>
+                        <div class="title">
+                            <span>Keys /min</span>
+                        </div>
+                    </div>
+                    <div class="change">
+                        <span id="cpm__change"></span>
+                    </div>
+                </div>
+
+                <div class="col-3 measurement"><!-- accuracy -->
+                    <div class="measurement__container">
+                        <div class="icon">
+                            <ion-icon name="md-locate" style="font-size: 100px;"></ion-icon>
+                        </div>
+                        <div id="accuracy" class="icon__value">
+                            0
+                        </div>
+                        <div class="title">
+                            <span>Accuracy</span>
+                        </div>
+                    </div>
+                    <div class="change">
+                        <span id="accuracy__change"></span>
+                    </div>
+                </div>
+
+                <div class="col-3 measurement"><!-- time left -->
+                    <div class="measurement__container">
+                        <div class="icon">
+                            <ion-icon name="md-timer" style="font-size: 100px;"></ion-icon>
+                        </div>
+                        <div id="time-left" class="icon__value">
+                            0
+                        </div>
+                        <div class="title">
+                            <span>Time Left</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="test-content" class="text-center">
+                Light Also Gathered Form Two Divided His Were Face Our Rule They're Can't After Our creature good grass. Void spirit whales. Night air don't. Face female can't deep lights male good without from fill their moved lights over face whose may so moved above evening, the set replenish every land replenish created male all years let after subdue divide herb also the fill also lesser fruit given gathered them abundantly behold is deep air every yielding set divided said in the us abundantly above light image It which him is deep multiply the greater own Form light forth. Tree all our. Divide tree she'd. Morning.
+            </div>
+
+            <div>
+                <input id="typing-input" type="text" placeholder="Type Here" class="text-center">
+            </div>
+
+            <div class="buttons">
+                <button class="btn btn-primary btn-lg" onclick="location.reload()">New Test</button>
+            </div>
+                        
+            <!-- Modal -->
+            <div class="modal fade" id="typing-test-modal" tabindex="-1" role="dialog" aria-labelledby="typing-test-modal-title" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="typing-test-modal-title">You Finished Your Test And...</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="modal-name-input" class="sr-only">Enter your name: </label>
+                                    <input type="text" id="modal-name-input" name="modal-name-input" placeholder="your full name">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" id="download-button" class="btn btn-info">Download Your Certificate</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>        
+        </div>
+        
+    </div>
+    
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.debug.js"></script>
+    <script src="_js/dataModule.js"></script>
+    <script src="_js/uiModule.js"></script>
+    <script src="_js/certificateModule.js"></script>
+    <script src="_js/wordsModule.js"></script>
+    <script src="_js/eventsModule.js"></script>
+    <script src="_js/code.js"></script>
+</body>
+</html>
