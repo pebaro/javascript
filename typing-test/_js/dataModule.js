@@ -1,5 +1,5 @@
 // Module for App Data
-var dataModule = (function () {
+const dataModule = (() => {
 
     // ==========
     // PRIVATE:
@@ -49,17 +49,17 @@ var dataModule = (function () {
         return newString;
     };
 
-    var capitaliseRandomWords = function(arrayOfStrings){
-        return arrayOfStrings.map(function(currentWord){
-            var capitaliseIndex = Math.floor(8 * Math.random()); // 15% chance
+    const capitaliseRandomWords = (arrayOfStrings) => {
+        return arrayOfStrings.map((currentWord) => {
+            const capitaliseIndex = Math.floor(8 * Math.random()); // 15% chance
             return (capitaliseIndex == 7) ? currentWord.upperCaseFirst() : currentWord;
         });
     };
 
     // random punctuation function
-    var addRandomPunctuation = function(arrayOfStrings){
-        return arrayOfStrings.map(function(currentWord){
-            var punctuation, randomPunctuation;
+    const addRandomPunctuation = (arrayOfStrings) => {
+        return arrayOfStrings.map((currentWord) => {
+            let punctuation, randomPunctuation;
 
             punctuation = [lineReturn, lineReturn, '?', '!', '.', '.', '.', ',', ',', ',', ',', ',', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''];
 
@@ -70,13 +70,13 @@ var dataModule = (function () {
         });
     };                                                                                                                                        
     // callback to check no. correct characters inside current word
-    var numberCorrectCharacters;
-    var characterCallback = function(currentElement, index){
+    let numberCorrectCharacters;
+    const characterCallback = (currentElement, index) => {
         numberCorrectCharacters += (currentElement == appData.words.currentWord.characters.user[index]) 
             ? 1 : 0;
     };
 
-    var appData = {
+    const appData = {
 
         indicators: {
             testStarted:            false,
@@ -119,7 +119,7 @@ var dataModule = (function () {
     };
 
     // word constructor
-    var word = function (index) {
+    const word = (index) => {
 
         // values: correct, user, boolean
         this.value = {
@@ -138,7 +138,7 @@ var dataModule = (function () {
     };
 
     // update method using word typed by user
-    word.prototype.update = function (value) {
+    word.prototype.update = (value) => {
         
         // update user input
         this.value.user = value;
@@ -171,27 +171,27 @@ var dataModule = (function () {
          * INDICATOR
          */
         // set test time
-        setTestTime: function (setTotalTestTime) {
+        setTestTime: (setTotalTestTime) => {
             appData.indicators.totalTestTime = setTotalTestTime;
         },
         
         // initialise time left to total test time
-        initializeTimeLeft: function () {
+        initializeTimeLeft: () => {
             appData.indicators.timeLeft = appData.indicators.totalTestTime;
         },
 
         // start test
-        startTest: function () {
+        startTest: () => {
             appData.indicators.testStarted = true;
         },
 
         // end test
-        endTest: function () {
+        endTest: () => {
             appData.indicators.testEnded = true;
         },
         
         // reduce time 1 second increments
-        reduceTime: function () {
+        reduceTime: () => {
             // reduce time by 1 second
             appData.indicators.timeLeft--;
 
@@ -199,22 +199,22 @@ var dataModule = (function () {
         },
         
         // checks for time left to continue with test
-        timeLeft: function () {
+        timeLeft: () => {
             return appData.indicators.timeLeft != 0;
         },
         
         // checks if test has ended already
-        testEnded: function () {
+        testEnded: () => {
             return appData.indicators.testEnded;
         },
         
         // check if test has started
-        testStarted: function () {
+        testStarted: () => {
             return appData.indicators.testStarted;
         },
 
         // get remaining time appData.timeLeft
-        getTimeLeft: function () {
+        getTimeLeft: () => {
             return appData.indicators.timeLeft;
         },
         
@@ -222,13 +222,13 @@ var dataModule = (function () {
          * RESULTS
          */
         // calculate WPM and WPM changes - update in appData
-        calculateWPM: function () { 
+        calculateWPM() { 
 
-            var wpmOld               = appData.results.wpm;
-            var wpmChange            = appData.results.wpmChange;
-            var numberOfCorrectWords = appData.results.numberOfCorrectWords;
-            var timeLeft             = appData.indicators.timeLeft;
-            var totalTestTime        = appData.indicators.totalTestTime;
+            const wpmOld               = appData.results.wpm;
+            const wpmChange            = appData.results.wpmChange;
+            const numberOfCorrectWords = appData.results.numberOfCorrectWords;
+            const timeLeft             = appData.indicators.timeLeft;
+            const totalTestTime        = appData.indicators.totalTestTime;
 
             if(timeLeft != totalTestTime){
                 appData.results.wpm = Math.round(60 * numberOfCorrectWords / (totalTestTime - timeLeft));
@@ -244,13 +244,13 @@ var dataModule = (function () {
         },
 
         // calculate CPM and CPM changes - update in appData
-        calculateCPM: function () {
+        calculateCPM() {
 
-            var cpmOld                      = appData.results.cpm;
-            var cpmChange                   = appData.results.cpmChange;
-            var numberOfCorrectCharacters   = appData.results.numberOfCorrectChars;
-            var timeLeft                    = appData.indicators.timeLeft;
-            var totalTestTime               = appData.indicators.totalTestTime;
+            const cpmOld                      = appData.results.cpm;
+            const cpmChange                   = appData.results.cpmChange;
+            const numberOfCorrectCharacters   = appData.results.numberOfCorrectChars;
+            const timeLeft                    = appData.indicators.timeLeft;
+            const totalTestTime               = appData.indicators.totalTestTime;
 
             if(timeLeft != totalTestTime){
                 appData.results.cpm = 
@@ -267,14 +267,14 @@ var dataModule = (function () {
         },
         
         // calculate accuracy and accuracy changes - update in appData
-        calculateAccuracy: function () {
+        calculateAccuracy() {
 
-            var accuracyOld                 = appData.results.accuracy;
-            var accuracyChange              = appData.results.accuracyChange;
-            var numberOfCorrectCharacters   = appData.results.numberOfCorrectChars;
-            var numberOfTestCharacters      = appData.results.numberOfTestChars;
-            var timeLeft                    = appData.indicators.timeLeft;
-            var totalTestTime               = appData.indicators.totalTestTime;
+            const accuracyOld                 = appData.results.accuracy;
+            const accuracyChange              = appData.results.accuracyChange;
+            const numberOfCorrectCharacters   = appData.results.numberOfCorrectChars;
+            const numberOfTestCharacters      = appData.results.numberOfTestChars;
+            const timeLeft                    = appData.indicators.timeLeft;
+            const totalTestTime               = appData.indicators.totalTestTime;
 
             if(timeLeft != totalTestTime){
                 if(numberOfTestCharacters != 0){
@@ -297,8 +297,8 @@ var dataModule = (function () {
          * TEST WORDS
          */
         // fill test words from customer lists
-        fillListOfTestWords: function (textNumber, words) { 
-            var result = words.split(' ');
+        fillListOfTestWords(textNumber, words) { 
+            const result = words.split(' ');
 
             if(textNumber === 0){
                 // shuffle words
@@ -312,13 +312,13 @@ var dataModule = (function () {
         },
 
         // get list of test words
-        getListOfTestWords: function () { 
+        getListOfTestWords() { 
             return appData.words.testWords;
         },
 
         // update by creating new instance of word class
-        moveToNewWord: function (index) {
-            var newWord, currentIndex;
+        moveToNewWord(index) {
+            let newWord, currentIndex;
 
             if(appData.words.currentWordIndex > -1){
                 // update numberOfCorrectWords
@@ -339,13 +339,13 @@ var dataModule = (function () {
         },
 
         // get current word index
-        getCurrentWordIndex: function(){
+        getCurrentWordIndex(){
             return appData.words.currentWordIndex;
         },
 
         // get current word
-        getCurrentWord: function(){
-            var currentWord = appData.words.currentWord;
+        getCurrentWord(){
+            const currentWord = appData.words.currentWord;
             return {
                 value: {
                     correct: currentWord.value.correct,
@@ -355,17 +355,17 @@ var dataModule = (function () {
         },
 
         // update current word using current user input
-        updateCurrentWord: function (value) {
+        updateCurrentWord(value) {
             appData.words.currentWord.update(value);
         },
 
         // get the line return
-        getLineReturn: function(){
+        getLineReturn(){
             return lineReturn;
         },
 
         // get certificate data
-        getCertificateData: function(){
+        getCertificateData(){
             return {
                 wpm:      appData.results.wpm,
                 accuracy: appData.results.accuracy
@@ -373,7 +373,7 @@ var dataModule = (function () {
         },
 
         // for testing
-        returnData: function(){
+        returnData(){
             console.log(appData);
         }
     };
