@@ -1,3 +1,5 @@
+This small program was a coding challenge as part of the first javascript course I did so I thought it was worth including
+
 NOTES:
 
 1. Works best if you enter the Amount Due as a decimal value such eg. 27.12 as this will give you a more in depth breakdown
