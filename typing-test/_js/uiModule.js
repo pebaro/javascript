@@ -36,9 +36,7 @@ const uiModule = (() => {
     };
 
     // turn string into an array of characters
-    const splitArray = (theString) => {
-        return theString.split('');
-    };
+    const splitArray = (theString) => theString.split('');
 
     // add a space as the last index in an array
     const addSpace = (arrayOfCharacters) => {
@@ -63,9 +61,7 @@ const uiModule = (() => {
     };
 
     // convert the characters array to a string
-    const joinTheWords = (wordArray) => {
-        return wordArray.join('');
-    };
+    const joinTheWords = (wordArray) => wordArray.join('');
 
     // set the classes for each character
     let userValue;
@@ -189,31 +185,21 @@ const uiModule = (() => {
             DOMelements.textInput.focus();
         },
         
-        isNameEmpty: () => {
-            return DOMelements.nameInput.value == '';
-        },
+        isNameEmpty: () => DOMelements.nameInput.value == '',
         
         flagNameInput: () => {
             DOMelements.nameInput.style.borderColor = 'red';
         },
         
-        spacePressed: () => {
-            return event.data == ' ';
-        },
+        spacePressed: () => event.data == ' ',
         
-        enterPressed: (lineReturn) => {
-            return DOMelements.textInput.value.includes(lineReturn + ' ');
-        },
+        enterPressed: (lineReturn) => DOMelements.textInput.value.includes(lineReturn + ' '),
         
         emptyInput: () => {
             DOMelements.textInput.value = '';
         },
 
-        getTypedWord: () => {
-            // console.log(DOMelements.textInput.value);
-            return DOMelements.textInput.value;
-        },
-
+        getTypedWord: () => DOMelements.textInput.value,
 
         /***************
          * TEST WORDS
