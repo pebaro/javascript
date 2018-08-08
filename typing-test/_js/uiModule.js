@@ -1,10 +1,10 @@
 // Module for UI
-var uiModule = (function () {
+const uiModule = (() => {
 
     // ===========
     // PRIVATE:
     // ===========
-    var DOMelements = {
+    const DOMelements = {
         // indicators
         timeLeft:       document.getElementById('time-left'),
 
@@ -36,26 +36,26 @@ var uiModule = (function () {
     };
 
     // turn string into an array of characters
-    var splitArray = function(theString){
+    const splitArray = (theString) => {
         return theString.split('');
     };
 
     // add a space as the last index in an array
-    var addSpace = function(arrayOfCharacters){
+    const addSpace = (arrayOfCharacters) => {
         arrayOfCharacters.push(' ');
 
         return arrayOfCharacters;
     };
 
     // wrap characters with <span> tags
-    var addSpanTags = function(arrayOfCharacters){
-        return arrayOfCharacters.map(function(currentCharacter){
+    const addSpanTags = (arrayOfCharacters) => {
+        return arrayOfCharacters.map((currentCharacter) => {
             return '<span>' + currentCharacter + '</span>';
         });
     };
 
     // wrap each word with a <span> tag
-    var addWordSpanTags = function(arrayOfWords){
+    const addWordSpanTags = (arrayOfWords) => {
         arrayOfWords.push('</span>');
         arrayOfWords.unshift('<span>');
 
@@ -63,22 +63,22 @@ var uiModule = (function () {
     };
 
     // convert the characters array to a string
-    var joinTheWords = function(wordArray){
+    const joinTheWords = (wordArray) => {
         return wordArray.join('');
     };
 
     // set the classes for each character
-    var userValue;
-    var returnCharacterClass = function(currentCharacter, index){
+    let userValue;
+    const returnCharacterClass = (currentCharacter, index) => {
         return (index < userValue.length) 
             ? (currentCharacter === userValue[index] ? 'correct-character' : 'wrong-character') 
             : '0' ;
     };
 
     // update changes to wpm, cpm, accuracy
-    var updateChange = function(value, changeElement){
+    const updateChange = (value, changeElement) => {
         // determine class to add and HTML content to insert
-        var classToAdd, html;
+        let classToAdd, html;
         [classToAdd, html] = (value >= 0) ? ['score-up', '+' + value] : ['score-down', value];
 
         // add percentage character to accuracy change
@@ -97,9 +97,9 @@ var uiModule = (function () {
         fadeElement(changeElement);
     };
 
-    var fadeElement = function(element){
+    const fadeElement = (element) => {
         element.style.borderBottomWidth = '4px';
-        setTimeout(function(){
+        setTimeout(() => {
             element.style.borderBottomWidth = '2px';
         }, 100);
     };
@@ -109,7 +109,7 @@ var uiModule = (function () {
     // ==========
     return {
         // DOM elements
-        getDOMElements: function () {
+        getDOMElements: () => {
             return {
                 textInput:      DOMelements.textInput,
                 downloadButton: DOMelements.downloadButton,
@@ -118,12 +118,12 @@ var uiModule = (function () {
         },
 
         // indicators
-        updateTimeLeft: function (timeLeft) {
+        updateTimeLeft: (timeLeft) => {
             DOMelements.timeLeft.innerHTML = timeLeft;
         },
         
         // test results
-        updateResults: function (results) {
+        updateResults: (results) => {
             // update words per minute
             DOMelements.wpm.innerHTML = results.wpm;
 
@@ -139,8 +139,8 @@ var uiModule = (function () {
             updateChange(results.accuracyChange, DOMelements.accuracyChange);
         },
 
-        fillModal: function (wpm) {
-            var results;
+        fillModal: (wpm) => {
+            let results;
             if(wpm < 30){
                 results = {
                     type: 'Snail',
@@ -167,7 +167,7 @@ var uiModule = (function () {
                 };
             }
 
-            var html = '<div class="modal-text"><h2>...You Are A %type%!</h2><p>Your Typing Speed: %wpm% Words per Minute</p></div>';
+            const html = '<div class="modal-text"><h2>...You Are A %type%!</h2><p>Your Typing Speed: %wpm% Words per Minute</p></div>';
 
             DOMelements.modalContent.classList.add(results.contentClass);
 
@@ -179,37 +179,37 @@ var uiModule = (function () {
             DOMelements.downloadButton.setAttribute('level', results.level);
         },
         
-        showModal: function () {
+        showModal: () => {
             // trigger modal with jQuery
             $('#typing-test-modal').modal('show');
         },
 
         // user input
-        inputFocus: function () {
+        inputFocus: () => {
             DOMelements.textInput.focus();
         },
         
-        isNameEmpty: function () {
+        isNameEmpty: () => {
             return DOMelements.nameInput.value == '';
         },
         
-        flagNameInput: function () {
+        flagNameInput: () => {
             DOMelements.nameInput.style.borderColor = 'red';
         },
         
-        spacePressed: function (event) {
+        spacePressed: () => {
             return event.data == ' ';
         },
         
-        enterPressed: function (lineReturn) {
+        enterPressed: (lineReturn) => {
             return DOMelements.textInput.value.includes(lineReturn + ' ');
         },
         
-        emptyInput: function () {
+        emptyInput: () => {
             DOMelements.textInput.value = '';
         },
 
-        getTypedWord: function () {
+        getTypedWord: () => {
             // console.log(DOMelements.textInput.value);
             return DOMelements.textInput.value;
         },
@@ -219,8 +219,8 @@ var uiModule = (function () {
          * TEST WORDS
          */
         // fill container with test words
-        fillContent: function(arrayOfWords, lineReturn){
-            var content, contentContainer;
+        fillContent: (arrayOfWords, lineReturn) => {
+            let content, contentContainer;
 
             content = arrayOfWords.map(splitArray);
             content = content.map(addSpace);
@@ -234,44 +234,44 @@ var uiModule = (function () {
         },
 
         // format test word
-        formatWord: function (wordObject) {
-            var activeWord = DOMelements.activeWord;
+        formatWord: (wordObject) => {
+            const activeWord = DOMelements.activeWord;
 
             // highlight active word
             activeWord.className = 'active-word';
 
             // format individual characters
-            var correctValue = wordObject.value.correct;
+            const correctValue = wordObject.value.correct;
             userValue = wordObject.value.user;
 
             // add classes var
-            var classes = Array.prototype.map.call(correctValue, returnCharacterClass);
+            const classes = Array.prototype.map.call(correctValue, returnCharacterClass);
 
             // get active word
-            var activeWord = DOMelements.activeWord;
-            var characters = activeWord.children;
+            const activeWord = DOMelements.activeWord;
+            const characters = activeWord.children;
 
             // add classes to characters
-            for(var i = 0; i < characters.length; i++){
+            for(let i = 0; i < characters.length; i++){
                 characters[i].removeAttribute('class');
                 characters[i].className = classes[i];
             }
         },
         
         // set the active test word
-        setActiveWord: function (index) {
+        setActiveWord: (index) => {
             DOMelements.activeWord = DOMelements.content.children[index];
         },
         
-        deactivateCurrentWord: function () {
+        deactivateCurrentWord: () => {
             DOMelements.activeWord.removeAttribute('class');
         },
         
-        scroll: function () {
-            var activeWord = DOMelements.activeWord;
-            var top1 = activeWord.offsetTop;
-            var top2 = DOMelements.content.offsetTop;
-            var diff = top1 - top2;
+        scroll: () => {
+            const activeWord = DOMelements.activeWord;
+            const top1 = activeWord.offsetTop;
+            const top2 = DOMelements.content.offsetTop;
+            const diff = top1 - top2;
 
             // scroll into middle
             DOMelements.content.scrollTop = diff - 40;
