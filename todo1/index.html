@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="https://unpkg.com/ionicons@4.1.0/dist/ionicons.js"></script>
+
+    <title>ToDo Application</title>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>ToDo Application</h1>
+            <div class="cont-top">
+                <h2>Never Forget To Remember</h2>        
+            </div>
+        </div>
+    </header>
+    <div id="main">
+        <div class="container">
+
+            <label for="filter-todo">filter your todos here</label>
+            <input type="text" id="filter-todo" name="filter-todo" placeholder="filter todos"><br>
+
+            <label for="hide-completed">hide completed todos: 
+                <input type="checkbox" name="hide-completed" id="hide-completed" value="0">
+            </label>
+            
+            <hr>
+
+            <div id="todo-list"></div>
+    
+            <form action="" id="todo-form">
+                <input type="text" id="input-todo" name="inputTodo" placeholder="add new todo">
+                <button class="btn-info btn">Create ToDo</button>
+            </form>        
+        </div>
+    </div>
+
+    
+    <script src="js/todo-functions.js"></script>
+    <script src="js/todo-app.js"></script>
+</body>
+</html>

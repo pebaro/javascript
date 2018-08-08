@@ -1,0 +1,185 @@
+/*
+Reset and Normalise stylesheets
+=============================================================
+*/
+/* @import 'reset-normalise.css'; */
+@import url('https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700');
+
+
+/* 
+Main Styles for Typing Test App
+=============================================================
+*/
+html {
+  font-family: 'Quicksand', sans-serif;
+}
+body {
+  /* background: url('../_img/background.jpg') no-repeat center center; */
+  /* background-attachment: fixed; */
+  /* background-size: cover; */
+  font-family: 'Quicksand', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+header {
+  position: fixed;
+  top: 0;
+  background-color: rgba(11, 38, 59, 1);
+  width: 100vw;
+  height: 145px;
+  padding: 35px 0 15px;
+  margin: 0 0 25px;
+  /* border-bottom: 1px solid rgb(94, 181, 247); */
+  border-bottom: 1px solid #03aafd;
+  color: #fff;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.7);
+  display: block;
+}
+.cont-top {
+  border-top: 1px solid #424242;
+  padding-top: 10px;
+  margin-top: 10px;
+}
+header h1 {
+  color: beige;
+  font-size: 2.4em;
+  font-weight: 300;
+  text-transform: capitalize;
+  margin-bottom: 5px;
+}
+header h2 {
+  font-size: 1.2em;
+  margin-bottom: 0;
+  font-weight: 300;
+  color: burlywood;
+}
+
+
+#main {
+  margin-top: 145px;
+  padding-top: 30px;
+  min-height: 565px;
+}
+#main  h4 {
+  font-size: 1.1em;
+  font-weight: 600;
+  color: #424242;
+  margin: 20px 0 10px;
+}
+
+
+.buttons-container {
+  border-top: 1px solid #9ec7e6;
+  margin-top: 25px;
+  padding-top: 30px;
+}
+
+
+footer {
+  width: 100vw;
+  margin: 10px 0 0;
+  padding: 20px 0 10px;
+  background-color: #202020;
+  color: cadetblue;
+  font-weight: 300;
+  border-top: #00abff 2px solid;
+  box-shadow: 0 -1px 2px #252525;
+}
+
+.title {
+  font-size: 20px;
+}
+.change {
+  margin: 5px auto 10px;
+  font-size: 20px;
+}
+.edit-note {
+  text-decoration: none;
+}
+.note-text {
+  margin: 0 10px;
+  font-size: 0.95em;
+  font-weight: 400;
+  color: darkslategray;
+  vertical-align: text-bottom;
+}
+.note-close-btn {
+  font-size: 1em;
+  color: rgb(189, 6, 6);
+  cursor: pointer;
+  vertical-align: text-bottom;
+}
+.note-close-btn:hover {
+  color: rgb(78, 0, 0);
+}
+.icon {
+  vertical-align: text-top;
+  font-size: 120%;
+}
+.note-edit-icon {
+  margin-left: 5px;
+  color: lightsteelblue;
+}
+a:hover,
+a:active {
+  color: #17a2b8;
+  text-decoration: underline;
+}
+
+#last-updated {
+  display: block;
+  margin: 0 0 15px;
+  font-size: 0.88em;
+  font-weight: 400;
+  color: darkgoldenrod;
+}
+label {
+  font-size: .8em;
+  color: cadetblue;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+/* label {
+  font-size: 0.9em;
+  color: darkcyan;
+  font-weight: 500;
+  margin-bottom: 2px;
+} */
+select {
+  margin-bottom: 2px;
+  height: 28px !important;
+  font-size: 0.85em !important;
+}
+
+input {
+  padding: 5px;
+  margin: 0 0 15px;
+  font-size: 14px;
+}
+input[type=text] {
+  background-color: rgb(255, 255, 255);
+  width: 100%;
+  border: 1px solid #fff;
+  border-radius: 2px;
+  box-shadow: 0 0 4px rgb(0, 0, 0, 0.7);
+}
+input:focus,
+textarea:focus {
+  border: 1px solid #00b9c9 !important;
+  outline: none;
+  box-shadow: none;
+}
+textarea {
+  overflow: auto;
+  resize: vertical;
+  font-size: 0.9em;
+  width: 100%;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid #fff;
+  border-radius: 2px;
+  box-shadow: 0 0 4px rgb(0, 0, 0, 0.7);
+}
+
+buttons {
+  margin: 20px auto;
+}

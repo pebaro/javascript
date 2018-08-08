@@ -21,14 +21,14 @@ class Hangman {
     }
 
     calculateStatus() {
-        const finished = this.word.every((letter) => this.guessedLetters.includes(letter)) // set the finished status of the game
+        const finished = this.word.every(letter => this.guessedLetters.includes(letter)) // set the finished status of the game
     
         if (this.remainingGuesses === 0) this.status = 'failed' // if number of allowed guesses runs out, status = failed
         else if (finished) this.status = 'finished'             // if finished variable is TRUE, status = finished
         else this.status = 'playing'                            // if the game is in any other state, status = playing
     }
 
-    get statusMessage() {
+    get gameStatus() {
         if (this.status === 'playing') return `Remaing Guesses: ${this.remainingGuesses}`       // when playing, show number of remaining guesses allowed
         else if (this.status === 'failed') return `Unlucky.....The Word Was "${this.original}"` // show failed message when remaining guesses allowed = 0
         else return `Congratulations.....You Guessed The Word!!!`                               // show message when the word/words are guessed correctly
